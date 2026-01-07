@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Projects with {{ skill_name }} | {{ info.name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Projects using "{{ skill_name }}"</h2>
+    {% if projects %}
+        <ul>
+        {% for project in projects %}
+            <li><a href="{{ url_for('project_detail', project_id=project.id) }}">{{ project.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects found for this skill.</p>
+    {% endif %}
+    <a href="{{ url_for('projects') }}" class="btn btn-secondary">Back to Projects</a>
+</div>
+{% endblock %}

@@ -57,9 +57,6 @@
             border-radius: 10px;
             text-align: center;
         }
-        .not-found h2 {
-            margin-top: 0;
-        }
         .info-box {
             background: #f0fff4;
             border-left: 4px solid #48bb78;
@@ -83,58 +80,65 @@
             text-decoration: none;
             border-radius: 5px;
         }
-        .nav-posts a:hover {
-            background: #e2e8f0;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/links">URL Builder</a>
-        </nav>
+<div class="container">
 
-        <span class="post-id">Post ID: {{ post_id }}</span>
+    <!-- NAV with url_for -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('show_links') }}">URL Builder</a>
+    </nav>
 
-        {% if post %}
-            <!-- Post found - display it -->
-            <div class="post-card">
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.content }}</p>
-            </div>
+    <span class="post-id">Post ID: {{ post_id }}</span>
 
-            <div class="info-box">
-                <strong>Integer Parameter:</strong>
-                <p>The route <code>/post/&lt;int:post_id&gt;</code> only accepts integers.</p>
-                <p>Try <code>/post/abc</code> - it will return a 404 error!</p>
-            </div>
-        {% else %}
-            <!-- Post not found -->
-            <div class="not-found">
-                <h2>Post Not Found</h2>
-                <p>Sorry, post #{{ post_id }} doesn't exist.</p>
-                <p>We only have posts 1, 2, and 3 in our demo database.</p>
-            </div>
-        {% endif %}
-
-        <div class="nav-posts">
-            {% if post_id > 1 %}
-                <a href="/post/{{ post_id - 1 }}">Previous Post</a>
-            {% else %}
-                <span></span>
-            {% endif %}
-
-            <a href="/post/{{ post_id + 1 }}">Next Post</a>
+    {% if post %}
+        <div class="post-card">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
         </div>
 
-        <h3>Available Posts</h3>
-        <ul>
-            <li><a href="/post/1">Post 1: Getting Started with Flask</a></li>
-            <li><a href="/post/2">Post 2: Understanding Routes</a></li>
-            <li><a href="/post/3">Post 3: Working with Templates</a></li>
-        </ul>
+        <div class="info-box">
+            <strong>Integer Parameter:</strong>
+            <p>The route <code>/post/&lt;int:post_id&gt;</code> only accepts integers.</p>
+            <p>Try <code>/post/abc</code> – it will return a 404 error!</p>
+        </div>
+    {% else %}
+        <div class="not-found">
+            <h2>Post Not Found</h2>
+            <p>Sorry, post #{{ post_id }} doesn't exist.</p>
+            <p>We only have posts 1, 2, and 3 in our demo database.</p>
+        </div>
+    {% endif %}
+
+    <!-- Previous / Next using url_for -->
+    <div class="nav-posts">
+        {% if post_id > 1 %}
+            <a href="{{ url_for('show_post', post_id=post_id-1) }}">Previous Post</a>
+        {% else %}
+            <span></span>
+        {% endif %}
+
+        <a href="{{ url_for('show_post', post_id=post_id+1) }}">Next Post</a>
     </div>
+
+    <!-- Exercise: dynamic list -->
+    <h3>Available Posts</h3>
+    <ul>
+        <li><a href="{{ url_for('show_post', post_id=1) }}">Post 1: Getting Started with Flask</a></li>
+        <li><a href="{{ url_for('show_post', post_id=2) }}">Post 2: Understanding Routes</a></li>
+        <li><a href="{{ url_for('show_post', post_id=3) }}">Post 3: Working with Templates</a></li>
+    </ul>
+
+    <!-- Extra exercise link -->
+    <div class="info-box">
+        <strong>Exercise Link:</strong>
+        <p>Try product page →  
+        <a href="{{ url_for('product_page', product_id=1) }}">View Product 1</a></p>
+    </div>
+
+</div>
 </body>
 </html>

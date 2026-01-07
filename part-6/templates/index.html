@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+<h2>📋 My Tasks</h2>
+
+{% for task in tasks %}
+<div class="card">
+    <h3>{{ task.title }}</h3>
+    <p>Status: <b>{{ task.status }}</b></p>
+
+    {% if task.priority == 'High' %}
+        <span class="tag high">High</span>
+    {% elif task.priority == 'Medium' %}
+        <span class="tag medium">Medium</span>
+    {% else %}
+        <span class="tag low">Low</span>
+    {% endif %}
+
+    <br><br>
+    <a class="btn" href="/task/{{ task.id }}">View</a>
+</div>
+{% endfor %}
+
+{% endblock %}

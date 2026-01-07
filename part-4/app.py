@@ -33,7 +33,7 @@ def show_post(post_id):
     return render_template('post.html', post_id=post_id, post=post)
 
 
-@app.route('/user/<username>/post/<int:post_id>')  # Multiple dynamic segments, visit: /user/Alice/post/1
+@app.route('/user/<username>/post/<int:post_id>')  # Multiple dynamic segments
 def user_post(username, post_id):
     return render_template('user_post.html', username=username, post_id=post_id)
 
@@ -43,7 +43,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/links')  # Demonstrates url_for() - generates URLs dynamically (better than hardcoding!)
+@app.route('/links')  # Demonstrates url_for() - generates URLs dynamically
 def show_links():
     links = {
         'home': url_for('home'),
@@ -59,35 +59,3 @@ def show_links():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-# =============================================================================
-# URL PARAMETER TYPES:
-# =============================================================================
-#
-# <variable>         - String (default), accepts any text without slashes
-# <int:variable>     - Integer, accepts only positive integers
-# <float:variable>   - Float, accepts floating point numbers
-# <path:variable>    - String, but also accepts slashes
-# <uuid:variable>    - UUID strings
-#
-# =============================================================================
-
-# =============================================================================
-# EXERCISES:
-# =============================================================================
-#
-# Exercise 4.1: Create a product page
-#   - Add route /product/<int:product_id>
-#   - Create a products dictionary with id, name, price
-#   - Display product details or "Not Found" message
-#
-# Exercise 4.2: Category and product route
-#   - Add route /category/<category_name>/product/<int:product_id>
-#   - Display both the category and product information
-#
-# Exercise 4.3: Search route
-#   - Add route /search/<query>
-#   - Display "Search results for: [query]"
-#   - Bonus: Add a simple search form that redirects to this route
-#
-# =============================================================================

@@ -55,6 +55,12 @@
             padding: 15px;
             margin: 20px 0;
         }
+        .exercise {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -100,8 +106,8 @@
 
         <div class="tip">
             <strong>Tip: Trailing Slashes</strong>
-            <p>Notice this page works with both <code>/about</code> and <code>/about/</code>?</p>
-            <p>That's because the route is defined as <code>@app.route('/about/')</code> with a trailing slash.</p>
+            <p>This page works with both <code>/about</code> and <code>/about/</code>.</p>
+            <p>Route: <code>@app.route('/about/')</code></p>
         </div>
 
         <h2>Why Use Dynamic Routes?</h2>
@@ -111,6 +117,28 @@
             <li><strong>Product pages:</strong> <code>/product/&lt;int:product_id&gt;</code></li>
             <li><strong>Categories:</strong> <code>/category/&lt;name&gt;</code></li>
         </ul>
+
+        <!-- ================= EXERCISES ADDED ================= -->
+
+        <h2>Exercises Implemented</h2>
+
+        <div class="exercise">
+            <strong>Exercise 4.1 – Product Page</strong>
+            <p>Route: <code>/product/&lt;int:product_id&gt;</code></p>
+            <p>Example: <a href="/product/1">/product/1</a></p>
+        </div>
+
+        <div class="exercise">
+            <strong>Exercise 4.2 – Category + Product</strong>
+            <p>Route: <code>/category/&lt;category_name&gt;/product/&lt;int:product_id&gt;</code></p>
+            <p>Example: <a href="/category/electronics/product/1">/category/electronics/product/1</a></p>
+        </div>
+
+        <div class="exercise">
+            <strong>Exercise 4.3 – Search</strong>
+            <p>Route: <code>/search/&lt;query&gt;</code></p>
+            <p>Example: <a href="/search/flask">/search/flask</a></p>
+        </div>
 
         <p><a href="/">Back to Home</a></p>
     </div>

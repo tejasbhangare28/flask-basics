@@ -67,6 +67,12 @@
             padding: 15px;
             margin: 20px 0;
         }
+        .exercise {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 15px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -130,7 +136,34 @@
                 <td><code>{{ links.post_2 }}</code></td>
                 <td><a href="{{ links.post_2 }}">Visit</a></td>
             </tr>
+
+            <!-- ===== EXERCISE LINKS ADDED ===== -->
+
+            <tr>
+                <td><code>url_for('product_page', product_id=1)</code></td>
+                <td><code>{{ links.product_1 }}</code></td>
+                <td><a href="{{ links.product_1 }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('category_product', category_name='electronics', product_id=1)</code></td>
+                <td><code>{{ links.category_product_1 }}</code></td>
+                <td><a href="{{ links.category_product_1 }}">Visit</a></td>
+            </tr>
+            <tr>
+                <td><code>url_for('search', query='flask')</code></td>
+                <td><code>{{ links.search_flask }}</code></td>
+                <td><a href="{{ links.search_flask }}">Visit</a></td>
+            </tr>
         </table>
+
+        <div class="exercise">
+            <strong>Exercises Added</strong>
+            <ul>
+                <li>Product page link</li>
+                <li>Category + product link</li>
+                <li>Search link</li>
+            </ul>
+        </div>
 
         <h2>Using url_for() in Python</h2>
         <div class="code-block">
@@ -139,7 +172,8 @@ from flask import url_for<br><br>
 url_for('home')  # Returns '/'<br><br>
 # With parameters<br>
 url_for('user_profile', username='Alice')  # Returns '/user/Alice'<br>
-url_for('show_post', post_id=42)  # Returns '/post/42'
+url_for('show_post', post_id=42)  # Returns '/post/42'<br>
+url_for('product_page', product_id=1)  # Returns '/product/1'
         </div>
 
         <h2>Using url_for() in Templates</h2>
@@ -147,7 +181,7 @@ url_for('show_post', post_id=42)  # Returns '/post/42'
 &lt;!-- Link to home --&gt;<br>
 &lt;a href="{{ url_for('home') }}"&gt;Home&lt;/a&gt;<br><br>
 &lt;!-- Link with parameter --&gt;<br>
-&lt;a href="{{ url_for('user_profile', username='Alice') }}"&gt;Alice&lt;/a&gt;
+&lt;a href="{{ url_for('search', query='flask') }}"&gt;Search Flask&lt;/a&gt;
         </div>
 
         <p><a href="/">Back to Home</a></p>

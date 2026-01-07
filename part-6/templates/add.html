@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Add Task{% endblock %}
+
+{% block content %}
+<h2>➕ Add New Task</h2>
+
+<div class="card">
+<form method="post">
+    <label>Task Title</label><br>
+    <input type="text" name="title" required style="width:100%;padding:8px"><br><br>
+
+    <label>Priority</label><br>
+    <select name="priority" style="width:100%;padding:8px">
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select><br><br>
+
+    <button class="btn">Add Task</button>
+</form>
+</div>
+{% endblock %}

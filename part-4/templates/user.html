@@ -67,41 +67,53 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/links">URL Builder</a>
-        </nav>
+<div class="container">
 
-        <div class="profile-header">
-            <div class="avatar">
-                {{ username[0]|upper }}
-            </div>
-            <h1>{{ username }}</h1>
-            <p>Welcome to {{ username }}'s profile page!</p>
+    <!-- NAV updated with url_for -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('show_links') }}">URL Builder</a>
+    </nav>
+
+    <div class="profile-header">
+        <div class="avatar">
+            {{ username[0]|upper }}
         </div>
-
-        <div class="info-box">
-            <strong>How this works:</strong>
-            <p>The URL <code>/user/{{ username }}</code> was captured by the route:</p>
-            <code>@app.route('/user/&lt;username&gt;')</code>
-            <p>The value <strong>"{{ username }}"</strong> was passed to the template!</p>
-        </div>
-
-        <h2>Try Other Users</h2>
-        <p>Change the URL to see different profiles:</p>
-        <ul>
-            <li><a href="/user/Alice">/user/Alice</a></li>
-            <li><a href="/user/Bob">/user/Bob</a></li>
-            <li><a href="/user/{{ username|title }}">/user/{{ username|title }}</a> (current)</li>
-        </ul>
-
-        <h2>See {{ username }}'s Posts</h2>
-        <ul>
-            <li><a href="/user/{{ username }}/post/1">{{ username }}'s Post #1</a></li>
-            <li><a href="/user/{{ username }}/post/2">{{ username }}'s Post #2</a></li>
-        </ul>
+        <h1>{{ username }}</h1>
+        <p>Welcome to {{ username }}'s profile page!</p>
     </div>
+
+    <div class="info-box">
+        <strong>How this works:</strong>
+        <p>The URL <code>/user/{{ username }}</code> was captured by the route:</p>
+        <code>@app.route('/user/&lt;username&gt;')</code>
+        <p>The value <strong>"{{ username }}"</strong> was passed to the template!</p>
+    </div>
+
+    <h2>Try Other Users</h2>
+    <p>Change the URL to see different profiles:</p>
+    <ul>
+        <li><a href="{{ url_for('user_profile', username='Alice') }}">/user/Alice</a></li>
+        <li><a href="{{ url_for('user_profile', username='Bob') }}">/user/Bob</a></li>
+        <li><a href="{{ url_for('user_profile', username=username|title) }}">
+            /user/{{ username|title }}</a> (current)</li>
+    </ul>
+
+    <h2>See {{ username }}'s Posts</h2>
+    <ul>
+        <li>
+            <a href="{{ url_for('user_post', username=username, post_id=1) }}">
+                {{ username }}'s Post #1
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('user_post', username=username, post_id=2) }}">
+                {{ username }}'s Post #2
+            </a>
+        </li>
+    </ul>
+
+</div>
 </body>
 </html>
